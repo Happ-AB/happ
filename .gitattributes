@@ -1,0 +1,11 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# Explicitly set line endings for specific file types if needed
+*.ts text eol=lf
+*.tsx text eol=lf
+
+# Binary files should not be altered
+*.jpg binary
+*.png binary
+*.pdf binary

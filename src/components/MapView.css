@@ -1,0 +1,18 @@
+.my-location-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10000;
+}
+
+.add-place-button {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  z-index: 10000;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between; /* Space buttons evenly */
+}
