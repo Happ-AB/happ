@@ -54,21 +54,25 @@ const CenterInfo: React.FC<ICenterInfoProps> = ({
 
           L.easyButton(
             "fa-location-crosshairs",
-            function (btn: any, map) {
+            function (btn: any, map: any) {
               setShowCurrentPosition((prevState: boolean) => !prevState);
             },
             "Show my position"
-          ).addTo(map);
+          )
+            .addTo(map)
+            .setPosition("topright");
 
           L.easyButton(
-            "fa-location-dot",
-            function (btn: any, map) {
+            "fa-plus",
+            function (btn: any, map: any) {
               const mapCenter = map.getCenter();
               setAddMarkerPosition([mapCenter.lat, mapCenter.lng]);
               setAddPlace((prevState: boolean) => !prevState);
             },
             "Add new snus place"
-          ).addTo(map);
+          )
+            .addTo(map)
+            .setPosition("topright");
 
           console.log(
             "pos.coords.accuracy " +
