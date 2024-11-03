@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       {/* Logotypen */}
-      <div className="logo">Events</div>
+      <div className="logo">HAPP</div>
 
       {/* Ikoner till höger */}
       <div className="icons">

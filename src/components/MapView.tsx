@@ -16,12 +16,20 @@ import AddLocationModal from "./AddLocationModal";
 const DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
-  className: "color: red",
 });
 
 const currentPositionIcon = new Icon({
   iconUrl: require("./../assets/img/current-location.png"),
   iconSize: [24, 24], // size of the icon
+});
+
+const AddLocationIcon = new L.Icon({
+  iconUrl: require("./../assets/img/marker-icon-orange.png"),
+  iconSize: [30, 48],
+  iconAnchor: [12, 48],
+  popupAnchor: [3, -52],
+  shadowUrl: iconShadow,
+  shadowSize: [48, 48],
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
@@ -45,6 +53,8 @@ const MapView: React.FC = () => {
 
   const [addLocationModalVisible, setAddLocationModalVisible] =
     useState<boolean>(false);
+
+  const [showDebugInfo, setShowDebugInfo] = useState<boolean>(false);
 
   // TODO: gör en default function som returnerar en loacation med random id samt övriga fält
   const [formData, setFormData] = useState<ILocation>({
@@ -87,6 +97,8 @@ const MapView: React.FC = () => {
       //}
     }
   }, [addPlace]);
+
+  const toggleShowDebugInfo = () => setShowDebugInfo((prev) => !prev);
 
   const moveToCurrentPosition = useCallback(() => {
     if (
@@ -230,6 +242,7 @@ const MapView: React.FC = () => {
                 position={[addMarkerPosition[0], addMarkerPosition[1]]}
                 ref={addMarkerRef}
                 eventHandlers={{ dragend: handleMarkerDragEnd }}
+                icon={AddLocationIcon}
               >
                 <Popup minWidth={90} autoClose={false} closeOnClick={false}>
                   <div className="form-group">
@@ -256,6 +269,8 @@ const MapView: React.FC = () => {
                 </Popup>
               </Marker>
             )}
+            {/* This button is just above and to the right of + button */}
+            <button onClick={toggleShowDebugInfo}>Show debug info</button>
           </MapContainer>
           {addLocationModalVisible && (
             <AddLocationModal
@@ -266,28 +281,32 @@ const MapView: React.FC = () => {
           )}
         </>
       )}
-      <div
-        style={{
-          position: "absolute",
-          top: "460px",
-          left: "10px",
-          zIndex: 1000,
-          backgroundColor: "white",
-          padding: "5px",
-        }}
-      >
-        Map Center: {center[0]}, {center[1]}
-        <br></br>
-        Add marker position: {addMarkerPosition[0]} , {addMarkerPosition[1]}
-        <br></br>
-        Current position: {currentLocation.coordinates.lat} ,{" "}
-        {currentLocation.coordinates.long}
-        <br></br>
-        error: {error}
-        <br></br>
-        accuracy: {accuracy}
-        <br></br>
-        addPlace: {addPlace.toString()}
+      <div>
+        {showDebugInfo && (
+          <div
+            style={{
+              position: "absolute",
+              top: "460px",
+              left: "10px",
+              zIndex: 1000,
+              backgroundColor: "white",
+              padding: "5px",
+            }}
+          >
+            Map Center: {center[0]}, {center[1]}
+            <br></br>
+            Add marker position: {addMarkerPosition[0]} , {addMarkerPosition[1]}
+            <br></br>
+            Current position: {currentLocation.coordinates.lat} ,{" "}
+            {currentLocation.coordinates.long}
+            <br></br>
+            error: {error}
+            <br></br>
+            accuracy: {accuracy}
+            <br></br>
+            addPlace: {addPlace.toString()}
+          </div>
+        )}
       </div>
     </div>
   );
