@@ -11,6 +11,7 @@ import useCurrentLocation from "./useCurrentLocation";
 import React from "react";
 import CenterInfo from "./CenterInfo";
 import AddLocationModal from "./AddLocationModal";
+import Search from "./Search";
 
 // Set up the default icon for markers
 const DefaultIcon = L.icon({
@@ -271,6 +272,7 @@ const MapView: React.FC = () => {
             )}
             {/* This button is just above and to the right of + button */}
             <button onClick={toggleShowDebugInfo}>Show debug info</button>
+            <Search />
           </MapContainer>
           {addLocationModalVisible && (
             <AddLocationModal
