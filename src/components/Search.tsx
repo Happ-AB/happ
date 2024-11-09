@@ -69,43 +69,4 @@ const Search = () => {
   );
 };
 
-const containerStyle = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  zIndex: 1000,
-};
-
-const inputWrapperStyle = {
-  position: "relative",
-  width: "300px",
-};
-
-const inputStyle = {
-  padding: "8px",
-  width: "100%",
-  boxSizing: "border-box",
-};
-
-const resultsListStyle = {
-  listStyle: "none",
-  padding: 0,
-  margin: 0,
-  background: "white",
-  border: "1px solid #ddd",
-  width: "100%",
-  maxHeight: "150px",
-  overflowY: "auto",
-};
-
-const resultItemStyle = {
-  padding: "8px",
-  cursor: "pointer",
-  borderBottom: "1px solid #eee",
-};
 export default Search;
