@@ -245,7 +245,7 @@ const MapView: React.FC = () => {
                 eventHandlers={{ dragend: handleMarkerDragEnd }}
                 icon={AddLocationIcon}
               >
-                <Popup minWidth={90} autoClose={false} closeOnClick={false}>
+                <Popup minWidth={90} autoClose={false} closeOnClick={true}>
                   <div className="form-group">
                     <h3>
                       {"1. Drag marker to location"}
