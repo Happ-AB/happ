@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSearch, FaBars } from "react-icons/fa";
+import { FaSearch, FaBars, FaFilter } from "react-icons/fa";
 import "./NavBar.css"; // Importera CSS-fil för att styla
 
 const NavBar = () => {
@@ -11,6 +11,7 @@ const NavBar = () => {
       {/* Ikoner till höger */}
       <div className="icons">
         <FaSearch className="icon" />
+        <FaFilter className="icon" />
         <FaBars className="icon" />
       </div>
     </nav>
