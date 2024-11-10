@@ -166,16 +166,6 @@ const MapView: React.FC = () => {
     setAddPlace(false);
   };
 
-  // const handleChange = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: value,
-  //   }));
-  // };
-
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
   const onClickNavBarSearch = () => {
