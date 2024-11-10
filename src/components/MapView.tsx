@@ -138,6 +138,16 @@ const MapView: React.FC = () => {
     }
   };
 
+  const handleMarkerClick = (e: any) => {
+    const marker = e.target;
+    const popup = marker.getPopup();
+
+    // If the popup is already open, don't close it
+    if (!popup.isOpen()) {
+      marker.openPopup(); // Open the popup if it's not already open
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -248,10 +258,19 @@ const MapView: React.FC = () => {
                   draggable={true}
                   position={[addMarkerPosition[0], addMarkerPosition[1]]}
                   ref={addMarkerRef}
-                  eventHandlers={{ dragend: handleMarkerDragEnd }}
+                  eventHandlers={{
+                    dragend: handleMarkerDragEnd,
+                    click: handleMarkerClick,
+                  }}
                   icon={AddLocationIcon}
                 >
-                  <Popup minWidth={90} autoClose={false} closeOnClick={true}>
+                  <Popup
+                    minWidth={90}
+                    autoClose={false}
+                    closeOnClick={false}
+                    closeButton={false}
+                    closeOnEscapeKey={false}
+                  >
                     <div className="form-group">
                       <h3>
                         {"1. Drag marker to location"}
