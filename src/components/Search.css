@@ -66,7 +66,7 @@
 /* Media query för att minska bredden på mobila enheter */
 @media (max-width: 600px) {
   .input-wrapper {
-    width: 80%; /* Justera bredden till 80% av skärmen för mobil */
+    width: 60%; /* Justera bredden till 80% av skärmen för mobil */
   }
 
   .search-input {
