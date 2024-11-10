@@ -1,8 +1,10 @@
+import { Categories } from "./enums";
+
 export interface ILocation {
   id: string;
   latitude: number;
   longitude: number;
-  category: string;
+  category: Categories;
   name: string;
   description: string;
 }

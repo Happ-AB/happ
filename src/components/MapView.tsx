@@ -11,6 +11,7 @@ import useCurrentLocation from "./useCurrentLocation";
 import React from "react";
 import CenterInfo from "./CenterInfo";
 import AddLocationModal from "./AddLocationModal";
+import { Categories } from "../enums";
 
 // Set up the default icon for markers
 const DefaultIcon = L.icon({
@@ -63,7 +64,7 @@ const MapView: React.FC = () => {
     longitude: 0,
     name: "",
     description: "",
-    category: "",
+    category: Categories.NONE,
   });
 
   const addMarkerRef = useRef<L.Marker>(null!);
@@ -183,7 +184,7 @@ const MapView: React.FC = () => {
             center={center}
             zoom={14}
             ref={mapRef}
-            style={{ height: "600px", width: "100%" }}
+            style={{ height: "100vh", width: "100%" }}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

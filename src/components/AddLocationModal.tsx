@@ -1,6 +1,7 @@
 // ModalForm.js
 import React from "react";
 import "./AddLocationModal.css"; // Import your CSS for styles
+import { Categories } from "../enums";
 
 const AddLocationModal = ({ onClose, onAdd, setFormData }: any) => {
   const handleChange = (e: any) => {
@@ -47,8 +48,11 @@ const AddLocationModal = ({ onClose, onAdd, setFormData }: any) => {
               required
             >
               <option value="">Select</option>
-              <option value="festival">Festival</option>
-              <option value="childrens_event">Childrens event</option>
+              {Object.entries(Categories).map(([key, value]) => (
+                <option key={key} value={value}>
+                  {value}
+                </option>
+              ))}
             </select>
           </div>
 
