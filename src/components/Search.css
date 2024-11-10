@@ -70,10 +70,11 @@
   }
 
   .search-input {
-    padding: 6px 24px 6px 6px; /* Minska padding för mobilstorlek */
+    padding: 8px 36px 8px 12px; /* Minska padding för mobilstorlek */
   }
 
   .clear-button {
     font-size: 16px; /* Justera storleken på krysset för mobil */
+    right: 5px;
   }
 }
