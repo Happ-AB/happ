@@ -12,6 +12,7 @@ import React from "react";
 import CenterInfo from "./CenterInfo";
 import AddLocationModal from "./AddLocationModal";
 import Search from "./Search";
+import NavBar from "./NavBar";
 
 // Set up the default icon for markers
 const DefaultIcon = L.icon({
@@ -175,142 +176,159 @@ const MapView: React.FC = () => {
   //   }));
   // };
 
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+
+  const onClickNavBarSearch = () => {
+    setShowSearch(!showSearch);
+  };
+
+  const onClickNavBarMenu = () => {
+    alert("not implemented");
+  };
+
   return (
-    <div style={{ position: "relative" }}>
-      {error && <div>{error}</div>}
-      {!error && (
-        <>
-          <MapContainer
-            center={center}
-            zoom={14}
-            ref={mapRef}
-            style={{ height: "600px", width: "100%" }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            <CenterInfo
+    <>
+      <NavBar
+        onClickNavBarSearch={onClickNavBarSearch}
+        onClickNavBarMenu={onClickNavBarMenu}
+      />
+      <div style={{ position: "relative" }}>
+        {error && <div>{error}</div>}
+        {!error && (
+          <>
+            <MapContainer
               center={center}
-              setCenter={setCenter}
-              updateAccuracy={updateAccuracy}
-              setShowCurrentPosition={setShowCurrentPosition}
-              setAddPlace={setAddPlace}
-              setAddMarkerPosition={setAddMarkerPosition}
-            />
-            {locations.map((location) => (
-              <Marker
-                key={location.id}
-                position={[location.latitude, location.longitude]}
-              >
-                <Popup>
-                  Name: {location.name} <br></br>
-                  Description: {location.description}
-                  <br></br>
-                  Category: {location.category}
-                  <br></br>
-                </Popup>
-              </Marker>
-            ))}
-            {showCurrentPosition &&
-              currentLocation.loaded &&
-              !currentLocation.error && (
-                <>
-                  <Marker
-                    key={23423424}
-                    position={[
-                      currentLocation.coordinates.lat,
-                      currentLocation.coordinates.long,
-                    ]}
-                    icon={currentPositionIcon}
-                  >
-                    <Popup>You are here:</Popup>
-                  </Marker>
-                  <Circle
-                    key={324}
-                    center={[
-                      currentLocation.coordinates.lat,
-                      currentLocation.coordinates.long,
-                    ]}
-                    radius={accuracy}
-                  ></Circle>
-                </>
-              )}
-            {addPlace && (
-              <Marker
-                key={676767}
-                draggable={true}
-                position={[addMarkerPosition[0], addMarkerPosition[1]]}
-                ref={addMarkerRef}
-                eventHandlers={{ dragend: handleMarkerDragEnd }}
-                icon={AddLocationIcon}
-              >
-                <Popup minWidth={90} autoClose={false} closeOnClick={true}>
-                  <div className="form-group">
-                    <h3>
-                      {"1. Drag marker to location"}
-                      <br></br>
-                      {"2. Press next button to add info"}
-                    </h3>
-                    <div className="form-actions">
-                      <button
-                        className="regular-button modal-button"
-                        onClick={() => setAddPlace(false)}
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        className="primary-button modal-button"
-                        onClick={() => setAddLocationModalVisible(true)}
-                      >
-                        Next
-                      </button>
+              zoom={14}
+              ref={mapRef}
+              style={{ height: "600px", width: "100%" }}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <CenterInfo
+                center={center}
+                setCenter={setCenter}
+                updateAccuracy={updateAccuracy}
+                setShowCurrentPosition={setShowCurrentPosition}
+                setAddPlace={setAddPlace}
+                setAddMarkerPosition={setAddMarkerPosition}
+              />
+              {locations.map((location) => (
+                <Marker
+                  key={location.id}
+                  position={[location.latitude, location.longitude]}
+                >
+                  <Popup>
+                    Name: {location.name} <br></br>
+                    Description: {location.description}
+                    <br></br>
+                    Category: {location.category}
+                    <br></br>
+                  </Popup>
+                </Marker>
+              ))}
+              {showCurrentPosition &&
+                currentLocation.loaded &&
+                !currentLocation.error && (
+                  <>
+                    <Marker
+                      key={23423424}
+                      position={[
+                        currentLocation.coordinates.lat,
+                        currentLocation.coordinates.long,
+                      ]}
+                      icon={currentPositionIcon}
+                    >
+                      <Popup>You are here:</Popup>
+                    </Marker>
+                    <Circle
+                      key={324}
+                      center={[
+                        currentLocation.coordinates.lat,
+                        currentLocation.coordinates.long,
+                      ]}
+                      radius={accuracy}
+                    ></Circle>
+                  </>
+                )}
+              {addPlace && (
+                <Marker
+                  key={676767}
+                  draggable={true}
+                  position={[addMarkerPosition[0], addMarkerPosition[1]]}
+                  ref={addMarkerRef}
+                  eventHandlers={{ dragend: handleMarkerDragEnd }}
+                  icon={AddLocationIcon}
+                >
+                  <Popup minWidth={90} autoClose={false} closeOnClick={true}>
+                    <div className="form-group">
+                      <h3>
+                        {"1. Drag marker to location"}
+                        <br></br>
+                        {"2. Press next button to add info"}
+                      </h3>
+                      <div className="form-actions">
+                        <button
+                          className="regular-button modal-button"
+                          onClick={() => setAddPlace(false)}
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          className="primary-button modal-button"
+                          onClick={() => setAddLocationModalVisible(true)}
+                        >
+                          Next
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </Popup>
-              </Marker>
+                  </Popup>
+                </Marker>
+              )}
+              {/* This button is just above and to the right of + button */}
+              <button onClick={toggleShowDebugInfo}>Show debug info</button>
+              {showSearch && <Search />}
+            </MapContainer>
+            {addLocationModalVisible && (
+              <AddLocationModal
+                onClose={cancelAddLocation}
+                onAdd={handleSubmit}
+                setFormData={setFormData}
+              />
             )}
-            {/* This button is just above and to the right of + button */}
-            <button onClick={toggleShowDebugInfo}>Show debug info</button>
-            <Search />
-          </MapContainer>
-          {addLocationModalVisible && (
-            <AddLocationModal
-              onClose={cancelAddLocation}
-              onAdd={handleSubmit}
-              setFormData={setFormData}
-            />
-          )}
-        </>
-      )}
-      <div>
-        {showDebugInfo && (
-          <div
-            style={{
-              position: "absolute",
-              top: "460px",
-              left: "10px",
-              zIndex: 1000,
-              backgroundColor: "white",
-              padding: "5px",
-            }}
-          >
-            Map Center: {center[0]}, {center[1]}
-            <br></br>
-            Add marker position: {addMarkerPosition[0]} , {addMarkerPosition[1]}
-            <br></br>
-            Current position: {currentLocation.coordinates.lat} ,{" "}
-            {currentLocation.coordinates.long}
-            <br></br>
-            error: {error}
-            <br></br>
-            accuracy: {accuracy}
-            <br></br>
-            addPlace: {addPlace.toString()}
-          </div>
+          </>
         )}
+        <div>
+          {showDebugInfo && (
+            <div
+              style={{
+                position: "absolute",
+                top: "460px",
+                left: "10px",
+                zIndex: 1000,
+                backgroundColor: "white",
+                padding: "5px",
+              }}
+            >
+              Map Center: {center[0]}, {center[1]}
+              <br></br>
+              Add marker position: {addMarkerPosition[0]} ,{" "}
+              {addMarkerPosition[1]}
+              <br></br>
+              Current position: {currentLocation.coordinates.lat} ,{" "}
+              {currentLocation.coordinates.long}
+              <br></br>
+              error: {error}
+              <br></br>
+              accuracy: {accuracy}
+              <br></br>
+              addPlace: {addPlace.toString()}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

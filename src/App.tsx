@@ -7,9 +7,6 @@ import NavBar from "./components/NavBar";
 const App: React.FC = () => {
   return (
     <div>
-      {/* <h1>Snus Location App</h1>
-      <AddSnusLocation /> */}
-      <NavBar />
       <MapView />
     </div>
   );
