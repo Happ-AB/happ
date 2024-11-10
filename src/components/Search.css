@@ -20,13 +20,30 @@
 .search-input {
   font-size: medium;
   height: 40px;
-  padding: 8px;
+  padding: 12px 36px 12px 12px; /* Extra padding på höger sida för krysset */
   width: 100%;
   box-sizing: border-box;
   pointer-events: auto;
 }
 
+.clear-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  pointer-events: auto;
+  color: #666;
+  z-index: 2; /* Placera krysset ovanför resultatlistan */
+}
+
 .results-list {
+  position: absolute;
+  top: 45px; /* Placera listan precis under input-fältet */
+  left: 0;
   font-size: small;
   list-style: none;
   padding: 0;
@@ -37,6 +54,7 @@
   max-height: 150px;
   overflow-y: auto;
   pointer-events: auto;
+  z-index: 1; /* Placera listan under krysset */
 }
 
 .result-item {
@@ -48,10 +66,14 @@
 /* Media query för att minska bredden på mobila enheter */
 @media (max-width: 600px) {
   .input-wrapper {
-    width: 50%; /* Justera bredden till 80% av skärmen för mobil */
+    width: 80%; /* Justera bredden till 80% av skärmen för mobil */
   }
 
   .search-input {
-    padding: 6px;
+    padding: 6px 24px 6px 6px; /* Minska padding för mobilstorlek */
+  }
+
+  .clear-button {
+    font-size: 16px; /* Justera storleken på krysset för mobil */
   }
 }

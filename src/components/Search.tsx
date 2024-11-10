@@ -41,13 +41,33 @@ const Search = () => {
     setResults([]);
   };
 
+  const clearSearch = () => {
+    setQuery("");
+    setResults([]);
+  };
+
+  const handleFocus = () => {
+    map.doubleClickZoom.disable(); // Inaktiverar dubbelklick-zoom när inputfältet är fokuserat
+  };
+
+  const handleBlur = () => {
+    map.doubleClickZoom.enable(); // Återaktiverar dubbelklick-zoom när inputfältet inte är fokuserat
+  };
+
   return (
     <div className="search-container">
       <div className="input-wrapper">
+        {query && (
+          <button onClick={clearSearch} className="clear-button">
+            ✕
+          </button>
+        )}
         <input
           type="text"
           value={query}
           onChange={handleInputChange}
+          onFocus={handleFocus} // Inaktivera dubbelklickzoom när inputfältet är fokuserat
+          onBlur={handleBlur} // Återaktivera dubbelklickzoom när inputfältet inte är fokuserat
           placeholder="Sök efter stad..."
           className="search-input"
         />
