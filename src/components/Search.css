@@ -18,6 +18,8 @@
 }
 
 .search-input {
+  font-size: medium;
+  height: 40px;
   padding: 8px;
   width: 100%;
   box-sizing: border-box;
@@ -25,6 +27,7 @@
 }
 
 .results-list {
+  font-size: small;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -46,5 +49,9 @@
 @media (max-width: 600px) {
   .input-wrapper {
     width: 50%; /* Justera bredden till 80% av skärmen för mobil */
+  }
+
+  .search-input {
+    padding: 6px;
   }
 }
