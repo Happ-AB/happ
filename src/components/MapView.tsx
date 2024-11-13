@@ -280,6 +280,33 @@ const MapView: React.FC = () => {
               setFormData={setFormData}
             />
           )}
+          <div
+            className="filter-modal"
+            style={{
+              position: "absolute",
+              padding: 10,
+              backgroundColor: "white",
+              zIndex: 1000,
+              width: "webkit-fill-available",
+              display: "flex",
+              flexDirection: "column",
+              top: 0,
+            }}
+          >
+            <div style={{ padding: 10, fontSize: 20, alignSelf: "end" }}>x</div>
+            <select
+              name=""
+              id="filter-category-select"
+              style={{ marginBottom: 10 }}
+            >
+              <option value="">Categories</option>
+              {Object.entries(Categories).map(([key, value]) => (
+                <option key={key} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
         </>
       )}
       <div>
