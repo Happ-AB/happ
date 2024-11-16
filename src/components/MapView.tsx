@@ -178,9 +178,13 @@ const MapView: React.FC = () => {
   };
 
   const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [showFilter, setShowFilter] = useState<boolean>(false);
 
   const onClickNavBarSearch = () => {
     setShowSearch(!showSearch);
+  };
+  const onClickNavBarFilter = () => {
+    setShowFilter(!showFilter);
   };
 
   const onClickNavBarMenu = () => {
@@ -191,6 +195,7 @@ const MapView: React.FC = () => {
     <>
       <NavBar
         onClickNavBarSearch={onClickNavBarSearch}
+        onClickNavBarFilter={onClickNavBarFilter}
         onClickNavBarMenu={onClickNavBarMenu}
       />
       <div style={{ position: "relative" }}>
@@ -307,35 +312,41 @@ const MapView: React.FC = () => {
                 setFormData={setFormData}
               />
             )}
-            <div
-              className="filter-modal"
-              style={{
-                position: "absolute",
-                padding: 10,
-                backgroundColor: "white",
-                zIndex: 1000,
-                width: "-webkit-fill-available",
-                display: "flex",
-                flexDirection: "column",
-                top: 0,
-              }}
-            >
-              <div style={{ padding: 10, fontSize: 20, alignSelf: "end" }}>
-                x
-              </div>
-              <select
-                name=""
-                id="filter-category-select"
-                style={{ marginBottom: 10 }}
+            {/* filter modal */}
+            {showFilter && (
+              <div
+                className="filter-modal"
+                style={{
+                  position: "absolute",
+                  padding: 10,
+                  backgroundColor: "white",
+                  zIndex: 1000,
+                  width: "-webkit-fill-available",
+                  display: "flex",
+                  flexDirection: "column",
+                  top: 0,
+                }}
               >
-                <option value="">Categories</option>
-                {Object.entries(Categories).map(([key, value]) => (
-                  <option key={key} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </select>
-            </div>
+                <div
+                  style={{ padding: 10, fontSize: 20, alignSelf: "end" }}
+                  onClick={() => setShowFilter(false)}
+                >
+                  x
+                </div>
+                <select
+                  name=""
+                  id="filter-category-select"
+                  style={{ marginBottom: 10 }}
+                >
+                  <option value="">Categories</option>
+                  {Object.entries(Categories).map(([key, value]) => (
+                    <option key={key} value={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </>
         )}
         <div>

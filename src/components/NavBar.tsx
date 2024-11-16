@@ -4,6 +4,7 @@ import "./NavBar.css"; // Importera CSS-fil för att styla
 
 interface INavBarProps {
   onClickNavBarSearch: any;
+  onClickNavBarFilter: any;
   onClickNavBarMenu: any;
 }
 
@@ -16,10 +17,7 @@ const NavBar = (props: INavBarProps) => {
       {/* Ikoner till höger */}
       <div className="icons">
         <FaSearch className="icon" onClick={props.onClickNavBarSearch} />
-        <FaFilter
-          className="icon"
-          onClick={() => console.log("clicked filter")}
-        />
+        <FaFilter className="icon" onClick={props.onClickNavBarFilter} />
         <FaBars className="icon" onClick={props.onClickNavBarMenu} />
       </div>
     </nav>
