@@ -14,6 +14,7 @@ import AddLocationModal from "./AddLocationModal";
 import Search from "./Search";
 import NavBar from "./NavBar";
 import { Categories } from "../types/enums";
+import FilterModal from "./FilterModal";
 
 // Set up the default icon for markers
 const DefaultIcon = L.icon({
@@ -59,7 +60,7 @@ const MapView: React.FC = () => {
 
   const [showDebugInfo, setShowDebugInfo] = useState<boolean>(false);
 
-  const [categoryFilter, setCategoryFilter] = useState<string>();
+  const [categoryFilter, setCategoryFilter] = useState<string>("");
 
   // TODO: gör en default function som returnerar en loacation med random id samt övriga fält
   const [formData, setFormData] = useState<ILocation>({
@@ -318,41 +319,11 @@ const MapView: React.FC = () => {
                 setFormData={setFormData}
               />
             )}
-            {/* filter modal */}
             {showFilter && (
-              <div
-                className="filter-modal"
-                style={{
-                  position: "absolute",
-                  padding: 10,
-                  backgroundColor: "white",
-                  zIndex: 1000,
-                  width: "-webkit-fill-available",
-                  display: "flex",
-                  flexDirection: "column",
-                  top: 0,
-                }}
-              >
-                <div
-                  style={{ padding: 10, fontSize: 20, alignSelf: "end" }}
-                  onClick={() => setShowFilter(false)}
-                >
-                  x
-                </div>
-                <select
-                  name=""
-                  id="filter-category-select"
-                  style={{ marginBottom: 10 }}
-                  onChange={(e) => setCategoryFilter(e.target.value)}
-                >
-                  <option value="">Categories</option>
-                  {Object.entries(Categories).map(([key, value]) => (
-                    <option key={key} value={value}>
-                      {value}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <FilterModal
+                setShowFilter={setShowFilter}
+                setCategoryFilter={setCategoryFilter}
+              />
             )}
           </>
         )}
