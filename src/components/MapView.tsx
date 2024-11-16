@@ -59,6 +59,8 @@ const MapView: React.FC = () => {
 
   const [showDebugInfo, setShowDebugInfo] = useState<boolean>(false);
 
+  const [categoryFilter, setCategoryFilter] = useState<string>();
+
   // TODO: gör en default function som returnerar en loacation med random id samt övriga fält
   const [formData, setFormData] = useState<ILocation>({
     id: "1",
@@ -66,7 +68,7 @@ const MapView: React.FC = () => {
     longitude: 0,
     name: "",
     description: "",
-    category: Categories.NONE,
+    category: Categories.OTHER,
   });
 
   const addMarkerRef = useRef<L.Marker>(null!);
@@ -220,20 +222,24 @@ const MapView: React.FC = () => {
                 setAddPlace={setAddPlace}
                 setAddMarkerPosition={setAddMarkerPosition}
               />
-              {locations.map((location) => (
-                <Marker
-                  key={location.id}
-                  position={[location.latitude, location.longitude]}
-                >
-                  <Popup>
-                    Name: {location.name} <br></br>
-                    Description: {location.description}
-                    <br></br>
-                    Category: {location.category}
-                    <br></br>
-                  </Popup>
-                </Marker>
-              ))}
+              {locations
+                .filter((loc) =>
+                  categoryFilter === "" ? true : loc.category === categoryFilter
+                )
+                .map((location) => (
+                  <Marker
+                    key={location.id}
+                    position={[location.latitude, location.longitude]}
+                  >
+                    <Popup>
+                      Name: {location.name} <br></br>
+                      Description: {location.description}
+                      <br></br>
+                      Category: {location.category}
+                      <br></br>
+                    </Popup>
+                  </Marker>
+                ))}
               {showCurrentPosition &&
                 currentLocation.loaded &&
                 !currentLocation.error && (
@@ -337,6 +343,7 @@ const MapView: React.FC = () => {
                   name=""
                   id="filter-category-select"
                   style={{ marginBottom: 10 }}
+                  onChange={(e) => setCategoryFilter(e.target.value)}
                 >
                   <option value="">Categories</option>
                   {Object.entries(Categories).map(([key, value]) => (

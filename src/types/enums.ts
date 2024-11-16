@@ -1,6 +1,5 @@
 export enum Categories {
-  NONE = "",
-  OTHER = "Other",
-  FESTIVAL = "Festival",
-  CHILDRENS_EVENT = "Children's event",
+  OTHER = "other",
+  FESTIVAL = "festival",
+  CHILDRENS_EVENT = "children's event",
 }
