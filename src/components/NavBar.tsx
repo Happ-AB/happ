@@ -1,8 +1,14 @@
 import React from "react";
-import { FaSearch, FaBars } from "react-icons/fa";
+import { FaSearch, FaBars, FaFilter } from "react-icons/fa";
 import "./NavBar.css"; // Importera CSS-fil för att styla
 
-const NavBar = () => {
+interface INavBarProps {
+  onClickNavBarSearch: any;
+  onClickNavBarFilter: any;
+  onClickNavBarMenu: any;
+}
+
+const NavBar = (props: INavBarProps) => {
   return (
     <nav className="navbar">
       {/* Logotypen */}
@@ -10,8 +16,9 @@ const NavBar = () => {
 
       {/* Ikoner till höger */}
       <div className="icons">
-        <FaSearch className="icon" />
-        <FaBars className="icon" />
+        <FaSearch className="icon" onClick={props.onClickNavBarSearch} />
+        <FaFilter className="icon" onClick={props.onClickNavBarFilter} />
+        <FaBars className="icon" onClick={props.onClickNavBarMenu} />
       </div>
     </nav>
   );
