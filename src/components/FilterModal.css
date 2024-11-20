@@ -1,0 +1,26 @@
+.filter-modal {
+  background-color: white;
+  position: absolute;
+  padding: 10px;
+  z-index: 1000;
+  width: -webkit-fill-available;
+  top: 0;
+  @media screen {
+    width: 20rem;
+    top: 20px;
+    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.close-button {
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: end;
+}
+
+#filter-category-select {
+  margin-bottom: 10px;
+}

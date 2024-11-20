@@ -1,4 +1,5 @@
 import { Categories } from "../types/enums";
+import "./FilterModal.css";
 
 interface IProps {
   setShowFilter: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,29 +8,13 @@ interface IProps {
 
 const FilterModal = (props: IProps) => {
   return (
-    <div
-      className="filter-modal"
-      style={{
-        position: "absolute",
-        padding: 10,
-        backgroundColor: "white",
-        zIndex: 1000,
-        width: "-webkit-fill-available",
-        display: "flex",
-        flexDirection: "column",
-        top: 0,
-      }}
-    >
-      <div
-        style={{ padding: 10, fontSize: 20, alignSelf: "end" }}
-        onClick={() => props.setShowFilter(false)}
-      >
-        x
+    <div className="filter-modal">
+      <div className="close-button" onClick={() => props.setShowFilter(false)}>
+        ✕
       </div>
       <select
         name=""
         id="filter-category-select"
-        style={{ marginBottom: 10 }}
         onChange={(e) => props.setCategoryFilter(e.target.value)}
       >
         <option value="">Categories</option>
