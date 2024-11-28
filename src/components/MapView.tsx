@@ -322,6 +322,7 @@ const MapView: React.FC = () => {
             {showFilter && (
               <FilterModal
                 setShowFilter={setShowFilter}
+                categoryFilter={categoryFilter}
                 setCategoryFilter={setCategoryFilter}
               />
             )}

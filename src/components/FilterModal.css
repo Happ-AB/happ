@@ -15,12 +15,27 @@
 }
 
 .close-button {
-  padding: 10px;
-  font-size: 20px;
+  padding: 2px 4px;
+  font-size: 16px;
   cursor: pointer;
   text-align: end;
 }
 
 #filter-category-select {
   margin-bottom: 10px;
+}
+
+.filter-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.current-filter {
+  background-color: #2dcea2;
+  color: #fff;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 10px;
+  cursor: pointer;
 }
